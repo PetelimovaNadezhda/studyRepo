@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.sortAlgorithm.BubbleSort;
-import com.company.sortAlgorithm.CocktailSort;
-import com.company.sortAlgorithm.InsertionSort;
-import com.company.sortAlgorithm.ShellSort;
+import com.company.sortAlgorithm.*;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -24,10 +21,12 @@ public class Main {
         System.out.println("Cocktail      " + Arrays.toString(CocktailSort.sort(Arrays.copyOf(array, array.length))));
         System.out.println("InsertionSort " + Arrays.toString(InsertionSort.sort(Arrays.copyOf(array, array.length))));
         System.out.println("ShellSort     " + Arrays.toString(ShellSort.sort(Arrays.copyOf(array, array.length))));
+        System.out.println("TreeSort     " + Arrays.toString(TreeSort.sort(Arrays.copyOf(array, array.length))));
 
         if (checkSort(BubbleSort.sort(Arrays.copyOf(array, array.length))) ||
                 checkSort(CocktailSort.sort(Arrays.copyOf(array, array.length))) ||
                 checkSort(InsertionSort.sort(Arrays.copyOf(array, array.length))) ||
+                checkSort(TreeSort.sort(Arrays.copyOf(array, array.length))) ||
                 checkSort(ShellSort.sort(Arrays.copyOf(array, array.length)))) {
             throw new IllegalStateException();
         }
@@ -36,6 +35,7 @@ public class Main {
         measure("Cocktail", () -> CocktailSort.sort(Arrays.copyOf(array, array.length)));
         measure("InsertionSort", () -> InsertionSort.sort(Arrays.copyOf(array, array.length)));
         measure("ShellSort", () -> ShellSort.sort(Arrays.copyOf(array, array.length)));
+        measure("TreeSort", () -> TreeSort.sort(Arrays.copyOf(array, array.length)));
     }
 
     static boolean checkSort(int[] array) {

@@ -14,14 +14,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] array = IntStream.generate(() -> new Random().nextInt(10000)).limit(5000).toArray();
+        int[] array = IntStream.generate(() -> new Random().nextInt(15000)).limit(8000).toArray();
 
         System.out.println("Not sorted    " + Arrays.toString(array));
         System.out.println("Bubble        " + Arrays.toString(BubbleSort.sort(Arrays.copyOf(array, array.length))));
         System.out.println("Cocktail      " + Arrays.toString(CocktailSort.sort(Arrays.copyOf(array, array.length))));
         System.out.println("InsertionSort " + Arrays.toString(InsertionSort.sort(Arrays.copyOf(array, array.length))));
         System.out.println("ShellSort     " + Arrays.toString(ShellSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("TreeSort     " + Arrays.toString(TreeSort.sort(Arrays.copyOf(array, array.length))));
+        System.out.println("TreeSort      " + Arrays.toString(TreeSort.sort(Arrays.copyOf(array, array.length))));
 
         if (checkSort(BubbleSort.sort(Arrays.copyOf(array, array.length))) ||
                 checkSort(CocktailSort.sort(Arrays.copyOf(array, array.length))) ||
@@ -40,7 +40,7 @@ public class Main {
 
     static boolean checkSort(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] < array[i + 1]) {
+            if (array[i] <= array[i + 1]) {
                 return false;
             }
         }

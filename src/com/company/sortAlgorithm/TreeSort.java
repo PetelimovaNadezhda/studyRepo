@@ -2,50 +2,62 @@ package com.company.sortAlgorithm;
 
 import com.company.tree.Node;
 
+import java.util.Arrays;
+
 public class TreeSort {
 
     public static int[] sort(int[] array) {
         Node root = treeGenerate(array);
-        return generateSortArray(root, array.length);
+        return generateSortArrayByTree(root, array.length);
     }
 
-    private static int[] generateSortArray(Node root, int length) {
+    private static int[] generateSortArrayByTree(Node root, int length) {
         int[] array = new int[length];
-        Node node = root;
-        for (int i = 1; i < length; i++) {
+        for (int i = 0; i < length; i++) {
+            Node node = root;
             while (node.getLeft() != null) {
                 node = node.getLeft();
             }
-            if (node.getRight() != null) {
-                array[i] = node.getValue();
-                node = node.getRight();
-            }
             array[i] = node.getValue();
+            if (node.getRight() != null) {
+                if (node == root) {
+                    root = node.getRight();
+                } else {
+                    node.setLeft(node.getRight());
+                }
+            }
+            if (node.getLeft() == null && node.getRight() == null) {
+                Node parent = node.getParent();
+                if (parent.getRight() == node) {
+                    parent.setRight(null);
+                } else {
+                    parent.setLeft(null);
+                }
+            }
         }
         return array;
     }
 
     private static Node treeGenerate(int[] array) {
-        Node root = new Node(array[0]);
+        Node root = new Node(array[0], null);
         for (int i = 1; i < array.length; i++) {
             Node node = root;
-            boolean isFound = false;
-            while (!isFound) {
-                if (node.getValue() > array[i] && node.getRight() != null) {
-                    node = node.getRight();
+            while (node != null) {
+                if (node.getValue() <= array[i]) {
+                    if (node.getRight() != null) {
+                        node = node.getRight();
+                    } else {
+                        node.setRight(new Node(array[i], node));
+                        break;
+                    }
                 }
-                if (node.getValue() < array[i] && node.getLeft() != null) {
-                    node = node.getLeft();
-                }
-                if (node.getValue() > array[i] && node.getRight() == null) {
-                    node.setRight(new Node(array[i]));
-                    node = node.getRight();
-                    isFound = true;
-                }
-                if (node.getValue() < array[i] && node.getLeft() == null) {
-                    node.setLeft(new Node(array[i]));
-                    node = node.getLeft();
-                    isFound = true;
+                if (node.getValue() > array[i]) {
+                    if (node.getLeft() != null) {
+                        node = node.getLeft();
+                    } else {
+                        node.setLeft(new Node(array[i], node));
+                        break;
+                    }
                 }
             }
         }

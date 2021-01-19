@@ -93,4 +93,8 @@ public class Node {
         this.side = side;
         return this;
     }
+
+    public boolean hasChild() {
+        return this.left != null || this.right != null;
+    }
 }

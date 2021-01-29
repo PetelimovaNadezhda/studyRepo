@@ -1,11 +1,9 @@
-package com.company.sortAlgorithm;
+package com.example.sortAlgorithm;
 
-import com.company.tree.Node;
-import com.company.tree.Side;
+import com.example.tree.Node;
+import com.example.tree.Side;
 
-import java.sql.SQLOutput;
-
-import static com.company.tree.Side.*;
+import static com.example.tree.Side.*;
 
 public class SplaySort {
 

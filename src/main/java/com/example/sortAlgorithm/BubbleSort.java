@@ -1,6 +1,4 @@
-package com.company.sortAlgorithm;
-
-import java.util.Arrays;
+package com.example.sortAlgorithm;
 
 public class BubbleSort {
 

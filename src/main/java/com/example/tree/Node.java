@@ -1,49 +1,43 @@
-package com.company.tree;
+package com.example.tree;
 
-import static com.company.tree.Side.LEFT;
-import static com.company.tree.Side.RIGHT;
+import lombok.Getter;
+import lombok.Setter;
+
+import static com.example.tree.Side.LEFT;
 
 public class Node {
+
     private final Integer value;
     private Node parent;
     private Node left;
     private Node right;
     private Side side;
     private int level;
-    private boolean mark;
+    @Getter
+    @Setter
+    private NodeTable equalNodeTable;
 
     public Node(Integer value, Node parent) {
         this.parent = parent;
         this.value = value;
         this.left = null;
         this.right = null;
-        this.mark = false;
-    }
-
-    public boolean isMark() {
-        return mark;
-    }
-
-    public void setMark(boolean mark) {
-        this.mark = mark;
     }
 
     public int getLevel() {
         return level;
     }
 
-    public Node setLevel(int level) {
+    public void setLevel(int level) {
         this.level = level;
-        return this;
     }
 
-    public Node setChild(Side side, Node node) {
+    public void setChild(Side side, Node node) {
         if (side.equals(LEFT)) {
             this.setLeft(node);
         } else {
             this.setRight(node);
         }
-        return this;
     }
 
     public Node getChild(Side side) {
@@ -96,5 +90,13 @@ public class Node {
 
     public boolean hasChild() {
         return this.left != null || this.right != null;
+    }
+
+    public boolean hasLeftChild() {
+        return this.left != null ;
+    }
+
+    public boolean hasRightChild() {
+        return this.right != null;
     }
 }

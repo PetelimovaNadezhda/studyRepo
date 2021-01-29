@@ -1,4 +1,4 @@
-package com.company.sortAlgorithm;
+package com.example.sortAlgorithm;
 
 public class ShellSort {
 

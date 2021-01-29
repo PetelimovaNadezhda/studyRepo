@@ -1,4 +1,4 @@
-package com.company.tree;
+package com.example.tree;
 
 public enum Side {
     LEFT("left"),

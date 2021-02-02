@@ -31,9 +31,8 @@ public class Main {
         System.out.println("TreeSort      " + Arrays.toString(TreeSort.sort(Arrays.copyOf(array, array.length))));
 //        System.out.println("SplaySort     " + Arrays.toString(SplaySort.sort(Arrays.copyOf(array, array.length))));
 
-        checkCorrectnessOfSort();
-
-        mesureAllSort();
+//        checkCorrectnessOfSort();
+//        mesureAllSort();
     }
 
     private static void checkCorrectnessOfSort() {

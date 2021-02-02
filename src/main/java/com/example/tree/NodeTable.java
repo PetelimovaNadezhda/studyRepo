@@ -16,6 +16,10 @@ public class NodeTable {
     private Integer value;
     private Side side;
     private int level;
+    private int coordX;
+    private int coordY;
+    private int parentCoordX;
+    private int parentCoordY;
 
     public NodeTable() {
 
@@ -25,5 +29,14 @@ public class NodeTable {
         this.value = node.getValue();
         this.level = node.getLevel();
         this.side = node.getSide();
+        this.coordX = node.getCoordX();
+        this.coordY = node.getCoordY();
+        if (node.getParent() != null) {
+            this.parentCoordX = node.getParent().getCoordX();
+            this.parentCoordY = node.getParent().getCoordY();
+        } else {
+            this.parentCoordX = coordX;
+            this.parentCoordY = coordY;
+        }
     }
 }

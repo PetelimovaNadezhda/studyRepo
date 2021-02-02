@@ -1,12 +1,17 @@
 package com.example.tree;
 
+import com.example.sortAlgorithm.TreeSort;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+import static com.example.sortAlgorithm.TreeSort.maxLevel;
+import static com.example.sortAlgorithm.TreeSort.maxLengthOfNumber;
 
 public class TreePrint {
 
     @SuppressWarnings("unchecked")
-    public static void buildAndPrintTreeToConsole(Node root, int maxLengthOfNumber, int maxLevel) {
+    public static ArrayList<Node>[] buildAndPrintTreeToConsole(Node root) {
         maxLengthOfNumber++;
         ArrayList<Node>[] nodes = new ArrayList[maxLevel + 1];
         ArrayList<String>[] edges = new ArrayList[maxLevel + 1];
@@ -35,8 +40,11 @@ public class TreePrint {
             if (node.getLeft() != null) queue.add(node.getLeft());
             if (node.getRight() != null) queue.add(node.getRight());
         }
-        printTree(nodes, edges, maxLengthOfNumber, maxLevel);
+
+        printTree(nodes, edges);
         System.out.println();
+
+        return nodes;
     }
 
     private static void addNewNode(ArrayList<Node>[] nodes, Node node, int indexOfParent) {
@@ -147,9 +155,7 @@ public class TreePrint {
     }
 
     private static void printTree(ArrayList<Node>[] nodes,
-                                  ArrayList<String>[] edges,
-                                  int maxLengthOfNumber,
-                                  int maxLevel) {
+                                  ArrayList<String>[] edges) {
         for (int level = 0; level < maxLevel + 1; level++) {
             //print nodes
             for (Node node : nodes[level]) {

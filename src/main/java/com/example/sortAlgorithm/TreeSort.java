@@ -7,12 +7,12 @@ import static com.example.tree.TreePrint.buildAndPrintTreeToConsole;
 
 public class TreeSort {
 
-    static int maxLevel;
-    static int maxLengthOfNumber;
+    public static int maxLevel;
+    public static int maxLengthOfNumber;
 
     public static int[] sort(int[] array) {
         Node root = treeGenerate(array);
-        buildAndPrintTreeToConsole(root, maxLengthOfNumber, maxLevel);
+        buildAndPrintTreeToConsole(root);
         return generateSortArrayByTree(root, array.length);
     }
 

@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import static com.example.tree.Side.LEFT;
 
+@Getter
+@Setter
 public class Node {
 
     private final Integer value;
@@ -13,8 +15,8 @@ public class Node {
     private Node right;
     private Side side;
     private int level;
-    @Getter
-    @Setter
+    private int coordX;
+    private int coordY;
     private NodeTable equalNodeTable;
 
     public Node(Integer value, Node parent) {
@@ -22,14 +24,6 @@ public class Node {
         this.value = value;
         this.left = null;
         this.right = null;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public void setChild(Side side, Node node) {
@@ -48,17 +42,9 @@ public class Node {
         }
     }
 
-    public Node getParent() {
-        return parent;
-    }
-
     public Node setParent(Node parent) {
         this.parent = parent;
         return this;
-    }
-
-    public Node getLeft() {
-        return left;
     }
 
     public Node setLeft(Node left) {
@@ -66,21 +52,9 @@ public class Node {
         return this.left;
     }
 
-    public Node getRight() {
-        return right;
-    }
-
     public Node setRight(Node right) {
         this.right = right;
         return this.right;
-    }
-
-    public Integer getValue() {
-        return value;
-    }
-
-    public Side getSide() {
-        return side;
     }
 
     public Node setSide(Side side) {

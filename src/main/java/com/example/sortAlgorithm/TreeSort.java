@@ -5,14 +5,14 @@ import com.example.tree.Side;
 
 import static com.example.tree.TreePrint.buildAndPrintTreeToConsole;
 
-public class TreeSort {
+public class TreeSort implements Tree{
 
     public static int maxLevel;
     public static int maxLengthOfNumber;
 
     public static int[] sort(int[] array) {
         Node root = treeGenerate(array);
-        buildAndPrintTreeToConsole(root);
+//        buildAndPrintTreeToConsole(root, new TreeSort());
         return generateSortArrayByTree(root, array.length);
     }
 
@@ -78,5 +78,15 @@ public class TreeSort {
             }
         }
         return root;
+    }
+
+    @Override
+    public int getMaxLevel() {
+        return maxLevel;
+    }
+
+    @Override
+    public int getMaxLengthOfNumber() {
+        return maxLengthOfNumber;
     }
 }

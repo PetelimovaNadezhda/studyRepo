@@ -1,7 +1,7 @@
 package com.example.tree;
 
 import com.example.Main;
-import com.example.sortAlgorithm.TreeSort;
+import com.example.sortAlgorithm.SplaySort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static com.example.sortAlgorithm.TreeSort.treeGenerate;
+import static com.example.sortAlgorithm.SplaySort.treeGenerate;
 import static com.example.tree.TreePrint.buildAndPrintTreeToConsole;
 
 @RestController
@@ -18,6 +18,7 @@ public class TreeController {
     @Autowired
     private NodeRepository nodeRepository;
 
+    //now print SplaySort
     @GetMapping("/tree")
     Iterable<NodeTable> all() {
         System.out.println("====in progress=====");
@@ -37,7 +38,7 @@ public class TreeController {
     }
 
     private static void addCoorodinatesToTree(Node root) {
-        ArrayList<Node>[] coordinates = buildAndPrintTreeToConsole(root);
+        ArrayList<Node>[] coordinates = buildAndPrintTreeToConsole(root, new SplaySort());
         for (int i = 0; i < coordinates.length; i++) {
             for (int j = 0; j < coordinates[i].size(); j++) {
                 if (coordinates[i].get(j) != null) {

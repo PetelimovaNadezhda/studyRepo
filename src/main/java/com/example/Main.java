@@ -19,20 +19,20 @@ public class Main {
     public static int[] array = null;
 
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+//        SpringApplication.run(Main.class, args);
 
-        array = generateArray(10);
+        array = generateArray(200);
 
-        System.out.println("Not sorted    " + Arrays.toString(array));
-        System.out.println("Bubble        " + Arrays.toString(BubbleSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("Cocktail      " + Arrays.toString(CocktailSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("InsertionSort " + Arrays.toString(InsertionSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("ShellSort     " + Arrays.toString(ShellSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("TreeSort      " + Arrays.toString(TreeSort.sort(Arrays.copyOf(array, array.length))));
-//        System.out.println("SplaySort     " + Arrays.toString(SplaySort.sort(Arrays.copyOf(array, array.length))));
+        System.out.println("Not sorted     " + Arrays.toString(array));
+        System.out.println("Bubble Sort    " + Arrays.toString(BubbleSort.sort(Arrays.copyOf(array, array.length))));
+        System.out.println("Cocktail Sort  " + Arrays.toString(CocktailSort.sort(Arrays.copyOf(array, array.length))));
+        System.out.println("Insertion Sort " + Arrays.toString(InsertionSort.sort(Arrays.copyOf(array, array.length))));
+        System.out.println("Shell Sort     " + Arrays.toString(ShellSort.sort(Arrays.copyOf(array, array.length))));
+        System.out.println("Tree Sort      " + Arrays.toString(TreeSort.sort(Arrays.copyOf(array, array.length))));
+        System.out.println("Splay Sort     " + Arrays.toString(SplaySort.sort(Arrays.copyOf(array, array.length))));
 
-//        checkCorrectnessOfSort();
-//        mesureAllSort();
+        checkCorrectnessOfSort();
+        mesureAllSort();
     }
 
     private static void checkCorrectnessOfSort() {
@@ -40,23 +40,23 @@ public class Main {
                 checkSort(CocktailSort.sort(Arrays.copyOf(array, array.length))) &&
                 checkSort(InsertionSort.sort(Arrays.copyOf(array, array.length))) &&
                 checkSort(TreeSort.sort(Arrays.copyOf(array, array.length))) &&
-//                checkSort(SplaySort.sort(Arrays.copyOf(array, array.length))) ||
+                checkSort(SplaySort.sort(Arrays.copyOf(array, array.length))) ||
                 checkSort(ShellSort.sort(Arrays.copyOf(array, array.length)))) {
             throw new IllegalStateException();
         }
     }
 
     private static void mesureAllSort() {
-        measure("Bubble        ", () -> BubbleSort.sort(Arrays.copyOf(array, array.length)));
-        measure("Cocktail      ", () -> CocktailSort.sort(Arrays.copyOf(array, array.length)));
-        measure("InsertionSort ", () -> InsertionSort.sort(Arrays.copyOf(array, array.length)));
-        measure("ShellSort     ", () -> ShellSort.sort(Arrays.copyOf(array, array.length)));
-        measure("TreeSort      ", () -> TreeSort.sort(Arrays.copyOf(array, array.length)));
-//        measure("SplaySort     ", () -> SplaySort.sort(Arrays.copyOf(array, array.length)));
+        measure("Bubble Sort     ", () -> BubbleSort.sort(Arrays.copyOf(array, array.length)));
+        measure("Cocktail Sort   ", () -> CocktailSort.sort(Arrays.copyOf(array, array.length)));
+        measure("Insertion Sort  ", () -> InsertionSort.sort(Arrays.copyOf(array, array.length)));
+        measure("Shell Sort      ", () -> ShellSort.sort(Arrays.copyOf(array, array.length)));
+        measure("Tree Sort       ", () -> TreeSort.sort(Arrays.copyOf(array, array.length)));
+        measure("Splay Sort      ", () -> SplaySort.sort(Arrays.copyOf(array, array.length)));
     }
 
     private static int[] generateArray(int size) {
-        return IntStream.generate(() -> new Random().nextInt(size*10)).limit(size).toArray();
+        return IntStream.generate(() -> new Random().nextInt(size * 10)).limit(size).toArray();
     }
 
     static boolean checkSort(int[] array) {

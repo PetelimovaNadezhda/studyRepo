@@ -29,11 +29,11 @@ public class NodeTable {
         this.value = node.getValue();
         this.level = node.getLevel();
         this.side = node.getSide();
-        this.coordX = node.getCoordX();
-        this.coordY = node.getCoordY();
+        this.coordX = node.getCoordinateX();
+        this.coordY = node.getCoordinateY();
         if (node.getParent() != null) {
-            this.parentCoordX = node.getParent().getCoordX();
-            this.parentCoordY = node.getParent().getCoordY();
+            this.parentCoordX = node.getParent().getCoordinateX();
+            this.parentCoordY = node.getParent().getCoordinateY();
         } else {
             this.parentCoordX = coordX;
             this.parentCoordY = coordY;

@@ -1,7 +1,5 @@
 package com.example.tree;
 
-import com.example.sortAlgorithm.Tree;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -83,16 +81,16 @@ public class TreePrint {
                                               ArrayList<Node>[] nodes,
                                               ArrayList<String>[] edges,
                                               Node node) {
-        if (node.getLevel() < maxLevel && node.hasChild()) {
+        if (node.getLevel() < maxLevel && node.isHasChild()) {
             int indexOfNode = nodes[node.getLevel()].indexOf(node);
             while (edges[node.getLevel()].size() <= indexOfNode)
                 edges[node.getLevel()].add(" ");
-            if (node.hasLeftChild() && node.hasRightChild()) {
+            if (node.isHasLeftChild() && node.isHasRightChild()) {
                 edges[node.getLevel()].set(indexOfNode, "┴");
             } else {
-                if (node.hasLeftChild())
+                if (node.isHasLeftChild())
                     edges[node.getLevel()].set(indexOfNode, "┘");
-                if (node.hasRightChild())
+                if (node.isHasRightChild())
                     edges[node.getLevel()].set(indexOfNode, "└");
             }
         }

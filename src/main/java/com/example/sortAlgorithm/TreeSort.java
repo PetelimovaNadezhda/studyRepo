@@ -2,10 +2,9 @@ package com.example.sortAlgorithm;
 
 import com.example.tree.Node;
 import com.example.tree.Side;
+import com.example.tree.Tree;
 
-import static com.example.tree.TreePrint.buildAndPrintTreeToConsole;
-
-public class TreeSort implements Tree{
+public class TreeSort implements Tree {
 
     public static int maxLevel;
     public static int maxLengthOfNumber;
@@ -28,11 +27,11 @@ public class TreeSort implements Tree{
                 root = node.getRight();
             } else {
                 if (node.getRight() != null) {
-                    node.getRight().setSide(node.getSide())
-                            .setParent(node.getParent());
-                    node.getParent().setChild(node.getSide(), node.getRight());
+                    node.getRight().setSide(Side.LEFT);
+                    node.setParent(node.getParent());
+                    node.getParent().setChild(Side.LEFT, node.getRight());
                 } else {
-                    node.getParent().setChild(node.getSide(), null);
+                    node.getParent().setChild(Side.LEFT, null);
                 }
             }
         }
@@ -40,8 +39,7 @@ public class TreeSort implements Tree{
     }
 
     public static Node treeGenerate(int[] array) {
-        Node root = new Node(array[0], null);
-        root.setLevel(0);
+        Node root = new Node(array[0], null, null, 0);
         maxLengthOfNumber = (int) (Math.log10(root.getValue()) + 1);
         for (int i = 1; i < array.length; i++) {
             int length = (int) (Math.log10(array[i]) + 1);
@@ -54,10 +52,7 @@ public class TreeSort implements Tree{
                         node = node.getRight();
                         level++;
                     } else {
-                        node.setRight(new Node(array[i], node))
-                                .setSide(Side.RIGHT)
-                                .setParent(node)
-                                .setLevel(++level);
+                        node.setRight(new Node(array[i], node, Side.RIGHT, ++level));
                         if (maxLevel < level) maxLevel = level;
                         break;
                     }
@@ -67,10 +62,7 @@ public class TreeSort implements Tree{
                         node = node.getLeft();
                         level++;
                     } else {
-                        node.setLeft(new Node(array[i], node))
-                                .setSide(Side.LEFT)
-                                .setParent(node)
-                                .setLevel(++level);
+                        node.setLeft(new Node(array[i], node, Side.LEFT, ++level));
                         if (maxLevel < level) maxLevel = level;
                         break;
                     }

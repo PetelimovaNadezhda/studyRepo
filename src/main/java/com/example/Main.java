@@ -1,7 +1,7 @@
 package com.example;
 
 import com.example.sortAlgorithm.*;
-import org.springframework.boot.SpringApplication;
+import lombok.SneakyThrows;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -15,24 +15,26 @@ import java.util.stream.IntStream;
 @SpringBootApplication
 public class Main {
 
+
     private static final int RUN_COUNT = 5;
     public static int[] array = null;
 
+    @SneakyThrows
     public static void main(String[] args) {
 //        SpringApplication.run(Main.class, args);
 
-        array = generateArray(200);
+        array = generateArray(2000);
 
-        System.out.println("Not sorted     " + Arrays.toString(array));
-        System.out.println("Bubble Sort    " + Arrays.toString(BubbleSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("Cocktail Sort  " + Arrays.toString(CocktailSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("Insertion Sort " + Arrays.toString(InsertionSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("Shell Sort     " + Arrays.toString(ShellSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("Tree Sort      " + Arrays.toString(TreeSort.sort(Arrays.copyOf(array, array.length))));
-        System.out.println("Splay Sort     " + Arrays.toString(SplaySort.sort(Arrays.copyOf(array, array.length))));
+//        System.out.println("Not sorted     " + Arrays.toString(array));
+//        System.out.println("Bubble Sort    " + Arrays.toString(BubbleSort.sort(Arrays.copyOf(array, array.length))));
+//        System.out.println("Cocktail Sort  " + Arrays.toString(CocktailSort.sort(Arrays.copyOf(array, array.length))));
+//        System.out.println("Insertion Sort " + Arrays.toString(InsertionSort.sort(Arrays.copyOf(array, array.length))));
+//        System.out.println("Shell Sort     " + Arrays.toString(ShellSort.sort(Arrays.copyOf(array, array.length))));
+//        System.out.println("Tree Sort      " + Arrays.toString(TreeSort.sort(Arrays.copyOf(array, array.length))));
+//        System.out.println("Splay Sort     " + Arrays.toString(SplaySort.sort(Arrays.copyOf(array, array.length))));
 
         checkCorrectnessOfSort();
-        mesureAllSort();
+        measureAllSort();
     }
 
     private static void checkCorrectnessOfSort() {
@@ -46,7 +48,7 @@ public class Main {
         }
     }
 
-    private static void mesureAllSort() {
+    private static void measureAllSort() {
         measure("Bubble Sort     ", () -> BubbleSort.sort(Arrays.copyOf(array, array.length)));
         measure("Cocktail Sort   ", () -> CocktailSort.sort(Arrays.copyOf(array, array.length)));
         measure("Insertion Sort  ", () -> InsertionSort.sort(Arrays.copyOf(array, array.length)));
@@ -78,7 +80,7 @@ public class Main {
      */
     static <T> long measureOneRun(Supplier<T> supplier) {
         long startTime = System.nanoTime();
-        T result = supplier.get();
+        supplier.get();
         long endTime = System.nanoTime();
         return (endTime - startTime + 500_000L) / 1_000_000L;
     }

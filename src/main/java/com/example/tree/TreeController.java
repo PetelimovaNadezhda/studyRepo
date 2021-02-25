@@ -42,8 +42,8 @@ public class TreeController {
         for (int i = 0; i < coordinates.length; i++) {
             for (int j = 0; j < coordinates[i].size(); j++) {
                 if (coordinates[i].get(j) != null) {
-                    coordinates[i].get(j).setCoordX(j);
-                    coordinates[i].get(j).setCoordY(i);
+                    coordinates[i].get(j).setCoordinateX(j);
+                    coordinates[i].get(j).setCoordinateY(i);
                 }
             }
         }

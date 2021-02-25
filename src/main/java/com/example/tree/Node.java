@@ -15,26 +15,28 @@ public class Node {
     private Node right;
     private Side side;
     private int level;
-    private int coordX;
-    private int coordY;
+    private int coordinateX;
+    private int coordinateY;
     private NodeTable equalNodeTable;
 
-    public Node(Integer value, Node parent) {
+    public Node(int value, Node parent, Side side, int level) {
         this.parent = parent;
         this.value = value;
         this.left = null;
         this.right = null;
+        this.side = side;
+        this.level = level;
     }
 
     public void setChild(Side side, Node node) {
         if (side.equals(LEFT)) {
-            this.setLeft(node);
+            this.left = node;
         } else {
-            this.setRight(node);
+            this.right = node;
         }
     }
 
-    public Node getChild(Side side) {
+    public Node getChildBySide(Side side) {
         if (side.equals(LEFT)) {
             return this.getLeft();
         } else {
@@ -42,35 +44,15 @@ public class Node {
         }
     }
 
-    public Node setParent(Node parent) {
-        this.parent = parent;
-        return this;
-    }
-
-    public Node setLeft(Node left) {
-        this.left = left;
-        return this.left;
-    }
-
-    public Node setRight(Node right) {
-        this.right = right;
-        return this.right;
-    }
-
-    public Node setSide(Side side) {
-        this.side = side;
-        return this;
-    }
-
-    public boolean hasChild() {
+    public boolean isHasChild() {
         return this.left != null || this.right != null;
     }
 
-    public boolean hasLeftChild() {
-        return this.left != null ;
+    public boolean isHasLeftChild() {
+        return this.left != null;
     }
 
-    public boolean hasRightChild() {
+    public boolean isHasRightChild() {
         return this.right != null;
     }
 }
